@@ -72,8 +72,13 @@
     width: calc(100% / 7);
     height: calc(100% / 7);
 }
-.coral{
 
-background-color:lightcoral;
+.active{
+
+    background-color: azure;
+}
+.bomb-click{
+
+    background-color:red;
 
 }

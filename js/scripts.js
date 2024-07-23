@@ -5,7 +5,7 @@ step
 1. creare una array bombe che contenga 16 numeri casuali 
     - i numeri creati non si devono ripetere
 2. quando l'utente clicca su una cella 
-    - se nella cella se il numero è presente nell' array bombe la casella si colora di rosso e la partita termina
+    - se nella cella il numero è presente nell' array bombe la casella si colora di rosso e la partita termina
     - altrimenti si colora di azzurro e continua il gioco
 3. al termina della partita comunico il puntaggio  
 */ 
@@ -45,11 +45,8 @@ createGrid.addEventListener('click',
         
         console.log(bombes);
         
-        
-
-        function getRndInteger(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
+        const moves = cellsNumber - bombes.length;
+        console.log(moves);
         
         for (let i = 0; i < cellsNumber; i++){
             const cell = document.createElement('div');
@@ -57,82 +54,67 @@ createGrid.addEventListener('click',
             cell.innerHTML += (i + 1);
             console.log(cell);
             grid.append(cell);
+
+            
+
+            cell.addEventListener('click',count,true);
+ 
             cell.addEventListener('click',
             function(){
 
-                cell.classList.toggle('coral');
-                console.log(cell.innerText);
+            let found;
+             for ( let i = 0; i < bombes.length; i ++){   
+                if( bombes[i] != cell.innerText){
+
+                    cell.classList.add('active');
+                   
+                    
+                }
+                
+                else {
+                    
+                    alert('hai perso');
+                    
+                    cell.classList.add('bomb-click');
+
+                    
+                    console.log('punteggio ottenuto:', contatore - 1);
+                    
+                    console.log('Hai preso una bomba nella cella :', '', 'n.', cell.innerText);
+                   
+                    
+                }
+                    
+                
+               
+            }
+                
+              
             }
         );
-        } 
-            
+        }
         
+        
+            
+       
     }
     
 );
-      
-    /*if(choiceGrid.selectedIndex == 0){
 
-           for (let i = 0; i < 100; i++){
-            const cell = document.createElement('div');
-            cell.classList.add('grid-10', 'col');
-            cell.innerHTML += (i + 1);
-            
-            console.log(cell);
-            this.addEventListener('clicked',
-                function(){
 
-                    this.classList.add('coral');
-                }
-             );
-            grid.append(cell);
-            
-        }  
+
+//funzioni
+let contatore=0;
+function count()
+{
+    contatore = contatore + 1;
+    
+
+    
+}
+
+function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-        
-        else if(choiceGrid.selectedIndex == 1){
-
-            for (let i = 0; i < 81; i++){
-             const cell = document.createElement('div');
-             cell.classList.add('grid-9', 'col');
-             cell.innerHTML += (i + 1);
-             
-             console.log(cell);
-             this.addEventListener('clicked',
-                function(){
-
-                    this.classList.add('coral');
-                }
-             );
-            grid.append(cell);
-         }  
-         }
-         
-        
-         
-         else if(choiceGrid.selectedIndex == 2){
-
-            for (let i = 0; i < 49; i++){
-             const cell = document.createElement('div');
-             cell.classList.add('grid-7', 'col');
-             cell.innerHTML += (i + 1);
-             
-             console.log(cell);
-             this.addEventListener('clicked',
-                function(){
-
-                    this.classList.add('coral');
-                }
-             );
-            grid.append(cell);
-         } 
-         }
-         
-
-    */
-
-
-
-
-
    
+
