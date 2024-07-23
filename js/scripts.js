@@ -18,7 +18,7 @@ console.log (choiceGrid);
 
 
 createGrid.addEventListener('click',
-    function (){
+    function  (){
         grid.innerHTML = '';
         let cellsNumber = 0;
         if(choiceGrid.selectedIndex == 0){
@@ -29,7 +29,7 @@ createGrid.addEventListener('click',
         }
         else if (choiceGrid.selectedIndex == 2){
 
-            cellsNumber = 49;
+            cellsNumber = 20;
         }
 
         const bombes = [];
@@ -58,49 +58,57 @@ createGrid.addEventListener('click',
             
 
             cell.addEventListener('click',count,true);
- 
+            
             cell.addEventListener('click',
-            function(){
+            function (){
 
-            let found;
+            
              for ( let i = 0; i < bombes.length; i ++){   
-                if( bombes[i] != cell.innerText){
+                 
 
-                    cell.classList.add('active');
-                   
+                if( bombes[i] == cell.innerText){
+
                     
-                }
-                
-                else {
-                    
-                    alert('hai perso');
-                    
+                    alert('punteggio ottenuto:' + '' + (contatore - 1));
+                    alert('Hai perso, hai preso una bomba nella cella :' + ''+  'n.'+ '' + cell.innerText);
                     cell.classList.add('bomb-click');
-
-                    
-                    console.log('punteggio ottenuto:', contatore - 1);
-                    
-                    console.log('Hai preso una bomba nella cella :', '', 'n.', cell.innerText);
-                   
-                    
+                    setTimeout("location.reload(true);", 3000);
                 }
+               
+                else {
+
+                   cell.classList.add('active');
                     
+
+                    if (contatore == moves){
+                        
+                        setTimeout("location.reload(true);", 3000);
+                        
+
+                    }
+
+                    }
+                }
+
+                
+                    
+                    
+                    
+                
+                
+                
                 
                
-            }
+            
                 
-              
+             
             }
         );
         }
         
-        
-            
-       
     }
     
-);
-
+); 
 
 
 //funzioni
