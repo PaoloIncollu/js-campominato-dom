@@ -74,18 +74,20 @@ createGrid.addEventListener('click',
                     cell.classList.add('bomb-click');
                     setTimeout("location.reload(true);", 3000);
                 }
-               
+                
+                else if (contatore == moves){
+                        
+                    setTimeout("location.reload(true);", 3000);
+                        
+
+                    }
+
                 else {
 
                    cell.classList.add('active');
                     
 
-                    if (contatore == moves){
-                        
-                        setTimeout("location.reload(true);", 3000);
-                        
-
-                    }
+                   
 
                     }
                 }
