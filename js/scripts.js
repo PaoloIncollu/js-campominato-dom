@@ -29,7 +29,7 @@ createGrid.addEventListener('click',
         }
         else if (choiceGrid.selectedIndex == 2){
 
-            cellsNumber = 20;
+            cellsNumber = 49;
         }
 
         const bombes = [];
