@@ -14,7 +14,7 @@ const createGrid = document.getElementById('btn-grid-create');
 const grid = document.getElementById('grid-container');
 
 const choiceGrid = document.getElementById('select-choice');
-console.log (choiceGrid);
+
 
 
 createGrid.addEventListener('click',
@@ -33,18 +33,19 @@ createGrid.addEventListener('click',
         }
 
         const bombes = [];
-        for (let i = 0; i < 16; i++) {
-        do {
-
-            rndNumber = getRndInteger(1, cellsNumber);
-
-        } while (bombes.includes(rndNumber));
+        while (bombes.length < 16) {
+        rndNumber = getRndInteger(1, cellsNumber);
+        
+            if (!bombes.includes(rndNumber)) {
 
             bombes.push(rndNumber);
+
+        } 
+
+            
         }
         
         console.log(bombes);
-        
         const moves = cellsNumber - bombes.length;
         console.log(moves);
         
@@ -52,58 +53,57 @@ createGrid.addEventListener('click',
             const cell = document.createElement('div');
             cell.classList.add('grid-' + cellsNumber, 'col');
             cell.innerHTML += (i + 1);
-            console.log(cell);
+            
             grid.append(cell);
 
             
-
-            cell.addEventListener('click',count,true);
             
+            
+
+                       
             cell.addEventListener('click',
             function (){
 
-            
-             for ( let i = 0; i < bombes.length; i ++){   
-                 
+            const cellBomb  = document.querySelectorAll('.bomb-click');
+            const cellNotBomb = document.querySelectorAll('.active');
 
-                if( bombes[i] == cell.innerText){
-
-                    
-                    alert('punteggio ottenuto:' + '' + (contatore - 1));
-                    alert('Hai perso, hai preso una bomba nella cella :' + ''+  'n.'+ '' + cell.innerText);
-                    cell.classList.add('bomb-click');
-                    setTimeout("location.reload(true);", 3000);
-                }
                 
-                else if (contatore == moves){
-                        
-                    setTimeout("location.reload(true);", 3000);
-                        
+              if (
+                cellBomb.length == 0 
+                && 
+                cellNotBomb.length < moves){
+                const numCell = parseInt(cell.innerText);
+                console.log ('hai cliccato la cella n :', '' ,numCell);
+                
+                if( bombes.includes(numCell)){
 
-                    }
+                    cell.classList.add('bomb-click');
+                    alert('il tuo punteggio è:' + '' + cellNotBomb.length);
+                    alert('Hai perso, hai preso una bomba nella cella :' + ''+  'n.'+ '' + numCell);
+                    
+                    
+                }
+
+                
 
                 else {
 
-                   cell.classList.add('active');
-                    
+                    cell.classList.add('active');
+                    if((cellNotBomb.length + 1 ) == moves ){
 
-                   
-
+                        alert('hai cliccato su tutte le celle non bomba hai vinto!');
                     }
+                    
                 }
+              }
+
+              else {
+                alert('il gioco è terminato');
+              }
+                
+                
 
                 
-                    
-                    
-                    
-                
-                
-                
-                
-               
-            
-                
-             
             }
         );
         }
@@ -114,14 +114,7 @@ createGrid.addEventListener('click',
 
 
 //funzioni
-let contatore=0;
-function count()
-{
-    contatore = contatore + 1;
-    
 
-    
-}
 
 function getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;

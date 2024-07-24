@@ -82,3 +82,28 @@
     background-color:red;
 
 }
+
+.btn-container{
+
+    width: 50%;
+    margin: 0 auto 50px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#btn-grid-create{
+
+    padding: 10px 8px;
+    background-color: bisque;
+    color: green;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+#select-choice{
+
+    font-weight: bold;
+    border-radius: 10px;
+
+}
